@@ -1,5 +1,4 @@
-# debloat-bench
-# docker<br>
+# debloat-bench<br>
 **Download Vagrant and virtual box using:**<br>
 ```sudo apt-get install -y vagrant```<br>
 ```sudo apt-get install -y virtualbox```
