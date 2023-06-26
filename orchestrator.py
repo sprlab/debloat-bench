@@ -12,8 +12,8 @@ from runningscripts import speaker_he_bhai
 from runningscripts import slimtoolkit_he_bhai
 from pullImages import pullimg
 
+applications = ['nginx:latest', 'httpd:bullseye', 'python:3.9.16','mysql:latest', 'node:latest']
 
-applications = ['nginx:latest', 'httpd:bullseye', 'python:3.9.16','mysql:latest', 'node:latest'] 
 
 def run_speaker():
 	ans = {}

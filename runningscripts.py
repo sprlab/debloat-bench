@@ -8,14 +8,42 @@ import shlex
 import pickle
 import re
 import json
-
-
+from TestCases.nginx_test_cases.test import nginx_funct
+from TestCases.node_test_cases.test import node_funct
+from TestCases.mysql_test_cases.test import mysql_funct
 
 def merge_files(input_files, output_file):
     with open(output_file, 'w') as outfile:
         for file_name in input_files:
             with open(file_name, 'r') as infile:
                 outfile.write(infile.read())
+
+def store_integer_in_file(directory, filename, number):
+    # Create the directory if it doesn't exist
+    import os
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    # Create the file path
+    file_path = os.path.join(directory, filename)
+
+    # Write the integer to the file
+    with open(file_path, 'w') as file:
+        file.write(str(number))
+
+
+def store_two_integers_in_file(directory, filename, number1, number2):
+    # Create the directory if it doesn't exist
+    import os
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    # Create the file path
+    file_path = os.path.join(directory, filename)
+
+    # Write the integers to the file
+    with open(file_path, 'w') as file:
+        file.write("{}\n{}".format(number1, number2))
 
 
 
@@ -58,15 +86,18 @@ def speaker_he_bhai(input_str_1,input_str_2,command,application):
 		last = 0
 		i = 0
 		while last != 10:
-			result = subprocess.run(['python3', 'test.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-			last =int(result.stdout.decode('utf-8')[-8:][0:2])
-			print(i,last)
+			result = application + '_funct()'
+			last  = eval(result)
+			print("***last:***",last)
 			i+=1
-		print(result.stdout.decode('utf-8'))
-	else:	
-		result = subprocess.run(['python3', 'test.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		print(result.stdout.decode('utf-8'))
-		last =int(result.stdout.decode('utf-8')[-6:][0])
+	else:
+		result = application + '_funct()'
+		last  = eval(result)
+		print("***last:***",last)
+		# -------------------------------------------------------------------
+
+	store_integer_in_file('/home/vagrant/vagrant_data/data', 'speaker_test_'+application+'.txt',last)
+
 	print("*****TESTING COMPLETED*****")
 
 	print("*****DELETING CONTAINERS*****")
@@ -93,10 +124,13 @@ def speaker_he_bhai(input_str_1,input_str_2,command,application):
 	input_files = [filename1, filename2, filename3]
 	output_file = '/home/vagrant/vagrant_data/syscalls/allowed.txt'
 	output_file1 = '/home/vagrant/vagrant_data/syscalls/speaker_allowed_'+application+'.txt'
+	output_file2 = '/home/vagrant/vagrant_data/data/speaker_allowed_'+application+'.txt'
 	merge_files(input_files, output_file)
 	merge_files(input_files, output_file1)
+	merge_files(input_files, output_file2)
 	sys = 326 - (sys1 + sys2 + sys3)
 	cve = 30
+	store_integer_in_file('/home/vagrant/vagrant_data/data', 'speaker_CVE_'+application+'.txt',cve)
 	ans = [{"syscall":sys},{"correctness":last},{"CVEs":cve}]
 
 	os.chdir("/home/vagrant/vagrant_data/syscalls")
@@ -128,12 +162,16 @@ def slimtoolkit_he_bhai(target,tag,command,application):
 		print(result.stdout.decode('utf-8'))
 		last =int(result.stdout.decode('utf-8')[-6:][0])
 	elif 'mysql' in application:
-		result = subprocess.run(['python3', 'test.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		last =int(result.stdout.decode('utf-8')[-8:][0:2])
+		result = application + '_funct()'
+		last  = eval(result)
+		print("***last:***",last)
 	else:	
-		result = subprocess.run(['python3', 'test.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		print(result.stdout.decode('utf-8'))
-		last =int(result.stdout.decode('utf-8')[-6:][0])
+		result = application + '_funct()'
+		last  = eval(result)
+		print("***last:***",last)
+
+	
+	store_integer_in_file('/home/vagrant/vagrant_data/data', 'slimtoolkit_test_'+application+'.txt',last)
 
 	print("*****TESTING COMPLETED*****")
 	print("*****DELETING CONTAINER*****")
@@ -154,6 +192,8 @@ def slimtoolkit_he_bhai(target,tag,command,application):
 		original_size = float(o[-1][0:-2])*1000
 	else:
 		original_size = float(o[-1][0:-2])
+
+	store_two_integers_in_file('/home/vagrant/vagrant_data/data', 'slimtoolkit_size_'+application+'.txt',original_size, Debloated_size)
 	
 	print("*****DELETING IMAGE*****")
 	result = subprocess.run(['docker', 'rmi', tag], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -181,7 +221,12 @@ def slimtoolkit_he_bhai(target,tag,command,application):
 	print(result.stdout.decode('utf-8'))
 	sys = 326 - len(syscall_list)
 	cve = 30
+	store_integer_in_file('/home/vagrant/vagrant_data/data', 'slimtoolkit_CVE_'+application+'.txt',cve)
 	ans = [{"syscall":sys},{"correctness":last},{"CVEs":cve},{"size":[original_size,Debloated_size]}]
+	os.chdir("/home/vagrant/vagrant_data/data")
+	with open('slimtoolkit_allowed_'+application+'.txt', 'w') as file:
+		for element in syscall_list:
+			file.write(element + '\n')
 	os.chdir("/home/vagrant/vagrant_data")
 	return ans
 
