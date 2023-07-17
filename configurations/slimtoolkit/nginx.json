@@ -1,0 +1,10 @@
+{
+    "applications": {
+      "nginx": {
+        "arg1": "nginx:latest",
+        "arg2": "new-nginx:curl",
+        "arg3": "docker run -it --entrypoint='' --name some-nginx1 -d -p 8080:80 new-nginx:curl sh",
+        "arg4": "nginx"
+      }
+    }
+}
