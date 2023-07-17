@@ -22,3 +22,6 @@
 ```python3 measurement.py```<br>
 **To get the syscalls category report go inside the Allowed_data folder and type:** <br>
 ```python3 final.py```<br>
+To add more applications, go => configurations => you_tool => create new json file to add new applications just like others. Also add the corresponding test cases in TestCases directory. <br>
+To add more tools create tool.py similar to slimtoolkit.py and speaker.py <br>
+Remember to add the configurations of newly added tool.
