@@ -8,87 +8,76 @@ import shlex
 import pickle
 import re
 import json
-from runningscripts import speaker_he_bhai
-from runningscripts import slimtoolkit_he_bhai
+from speaker import speaker_he_bhai
+from slimtoolkit import slimtoolkit_he_bhai
+# from runningscripts import speaker_he_bhai
+# from runningscripts import slimtoolkit_he_bhai
 from pullImages import pullimg
 
-applications = ['nginx:latest', 'httpd:bullseye', 'python:3.9.16','mysql:latest', 'node:latest']
+
+with open('configurations/applications_conf.json') as file:
+    config_data = json.load(file)
+# Create a list of applications from the configuration data
+applications = ["{}:{}".format(app, data['tag']) for app, data in config_data['applications'].items()]
+print(applications)
+
+application_names = [app.split(':')[0] for app in applications]
+for i in applications:
+	a = pullimg(i)
 
 
-def run_speaker():
-	ans = {}
-	for i in applications:
-		a = pullimg(i)
-	print("*****SPEAKER*****")
-	ans["nginx"] = speaker_he_bhai("docker run --security-opt seccomp:./log.json -it --entrypoint='' --name some-nginx -d -p 8080:80 nginx:latest sleep infinity","docker stop some-nginx","sudo ./speakeru -service nginx -cmd 'docker run -it --entrypoint="" --name some-nginx1 -d -p 8080:80 nginx:latest sleep infinity'","nginx")
-	ans["httpd"] = speaker_he_bhai("docker run --security-opt seccomp:./log.json -it -d --name some-httpd httpd:bullseye","docker stop some-httpd","sudo ./speakeru -service httpd -cmd 'docker run -it -d --name some-httpd1 httpd:bullseye'","httpd")
-	ans["python"] = speaker_he_bhai("docker run --security-opt seccomp:./log.json -it -d --name some-python python:3.9.16 sh","docker stop some-python","sudo ./speakeru -service python -cmd 'docker run -it -d --name some-python1 python:3.9.16 sh'","python")
-	ans["mysql"] = speaker_he_bhai("docker run --security-opt seccomp:./log.json -d -p 3306:3306 --name some-mysql -e MYSQL_ROOT_PASSWORD=pas mysql","docker stop some-mysql","sudo ./speakeru -service mysqld -cmd 'docker run -d -p 3306:3306 --name some-mysql1 -e MYSQL_ROOT_PASSWORD=pas mysql'","mysql")
-	ans["node"] = speaker_he_bhai("docker run --security-opt seccomp:./log.json -it --entrypoint="" --name some-node -d node sh","docker stop some-node","sudo ./speakeru -service node -cmd 'docker run -it --entrypoint="" --name some-node1 -d node sh'","node")
-	return ans
+def get_arguments(tool, application):
+    # Construct the path to the tool's configuration file
+    config_path = "configurations/" + tool + "/" + application.split(":")[0]+".json"
+    print(config_path)
 
-def run_slim():
-	ans = {}
-	# pullimg()
-	for i in applications:
-		a = pullimg(i)
+    # Check if the tool configuration file exists
+    if os.path.exists(config_path):
+        # Load the contents of the tool's configuration file
+        with open(config_path) as file:
+            config_data = json.load(file)
 
-	print("*****SLIMTOOLKIT*****")
-	ans["nginx"] = slimtoolkit_he_bhai('nginx:latest','new-nginx:curl',"docker run -it --entrypoint='' --name some-nginx1 -d -p 8080:80 new-nginx:curl sh",'nginx')
-	ans["httpd"] = slimtoolkit_he_bhai('httpd:bullseye','new-httpd:curl',"docker run -it -d --name some-httpd1 new-httpd:curl sh",'httpd')
-	ans["python"] = slimtoolkit_he_bhai('python:3.9.16','new-python:curl',"docker run -it -d --name some-python1 new-python:curl sh",'python')
-	ans["mysql"] = slimtoolkit_he_bhai('mysql:latest','new-mysql:curl','docker run -d -p 3306:3306 --name some-mysql1 -e MYSQL_ROOT_PASSWORD=pas new-mysql:curl','mysql' )
-	ans["node"] = slimtoolkit_he_bhai('node:latest','new-node:curl','docker run -it --entrypoint="" --name some-node1 -d new-node:curl sh','node' )
-	return ans
-	
+        # Extract the arguments for the specified application
+        arguments = [config_data['applications'][application]['arg' + str(i+1)] for i in range(4)]
+
+        # Return the arguments as a list
+        return arguments
+    else:
+        print("Configuration file for tool '{}' not found.".format(tool))
+        return []
+
+def run_tool(tool, tool_function):
+    ans = {}
+    print("*****" + tool.upper() + "*****")
+
+    for i in application_names:
+        arguments = get_arguments(tool, i)
+        if arguments:
+            print(arguments)
+            print(*arguments)
+            ans[i] = tool_function(*arguments)
+			
+    return ans
+
+
 parser = argparse.ArgumentParser(description='Description of your script')
 parser.add_argument('-t', '--tool', help='Specify tool', required=False)
 args = parser.parse_args()
 
 
 if args.tool == 'all':
-	a = {"speaker":run_speaker()}
-	b = {"slimtoolkit":run_slim()}
+	a = {"speaker":run_tool('speaker', speaker_he_bhai)}
+	b = {"slimtoolkit":run_tool('slimtoolkit', slimtoolkit_he_bhai)}
 	c = [a,b]
 	print(c)
-	os.chdir("/home/vagrant/vagrant_data")
-	with open('temp.pkl', 'wb') as f:
-		pickle.dump(c, f)
-	print("*****CREATING REPORT*****")
-	result = subprocess.run(['python3', 'Debloating.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	print(result.stdout.decode('utf-8'))
-	os.chdir("/home/vagrant/vagrant_data/syscalls")
-	result = subprocess.run(['python3', 'report.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	print(result.stdout.decode('utf-8'))
-	os.chdir("/home/vagrant/vagrant_data")
 
 elif args.tool == 'speaker':
-	a = {"speaker":run_speaker()}
+	a = {"speaker":run_tool('speaker', speaker_he_bhai)}
 	print(a)
-	os.chdir("/home/vagrant/vagrant_data")
-	with open('temp.pkl', 'wb') as f:
-		pickle.dump(a, f)
-	print("*****CREATING REPORT*****")
-	result = subprocess.run(['python3', 'Debloating.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	print(result.stdout.decode('utf-8'))
-	os.chdir("/home/vagrant/vagrant_data/syscalls")
-	result = subprocess.run(['python3', 'report.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	print(result.stdout.decode('utf-8'))
-	os.chdir("/home/vagrant/vagrant_data")
 
 elif args.tool == 'slimtoolkit':
-	a = {"slimtoolkit":run_slim()}
+	a = {"slimtoolkit":run_tool('slimtoolkit', slimtoolkit_he_bhai)}
 	print(a)
-	os.chdir("/home/vagrant/vagrant_data")
-	with open('temp.pkl', 'wb') as f:
-		pickle.dump(a, f)
-	print("*****CREATING REPORT*****")
-	result = subprocess.run(['python3', 'Debloating.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	print(result.stdout.decode('utf-8'))
-	os.chdir("/home/vagrant/vagrant_data/syscalls")
-	result = subprocess.run(['python3', 'report.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	print(result.stdout.decode('utf-8'))
-	os.chdir("/home/vagrant/vagrant_data")
 
 else:
 	parser.print_help()
