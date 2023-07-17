@@ -24,4 +24,5 @@
 ```python3 final.py```<br>
 To add more applications, go => configurations => you_tool => create new json file to add new applications just like others. Also add the corresponding test cases in TestCases directory. <br>
 To add more tools create tool.py similar to slimtoolkit.py and speaker.py <br>
-Remember to add the configurations of newly added tool.
+Remember to add the configurations of newly added tool. <br>
+Next step: for adding new tool, I'll create a base class with all the common functionalities like including running test cases, running train cases for dynamic tools etc. so that adding new tools will get easier.
