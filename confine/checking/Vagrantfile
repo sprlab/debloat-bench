@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # Configuration for the first virtual machine
+  config.vm.define "machine1" do |machine1|
+    machine1.vm.box = "chenhan/ubuntu-desktop-20.04"
+    machine1.vm.synced_folder ".", "/home/vagrant/vagrant_data"
+    machine1.vm.provider "virtualbox" do |vb|
+      vb.cpus = 2
+      vb.memory = "2048"
+    end
+    machine1.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+      apt-get update
+      apt-get install -y docker-ce docker-ce-cli containerd.io
+      usermod -aG docker vagrant
+      sudo apt-get install -y sysdig
+      sudo snap install curl
+      curl -sL https://raw.githubusercontent.com/slimtoolkit/slim/master/scripts/install-slim.sh | sudo -E bash -
+      apt install -y sysdig
+    SHELL
+  end
+
+  # Configuration for the second virtual machine
+  config.vm.define "machine2" do |machine2|
+    machine2.vm.box = "chenhan/ubuntu-desktop-20.04"
+    machine2.vm.synced_folder ".", "/home/vagrant/vagrant_data"
+    machine2.vm.provider "virtualbox" do |vb|
+      vb.cpus = 2
+      vb.memory = "2048"
+    end
+    machine2.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+      apt-get update
+      apt-get install -y docker-ce docker-ce-cli containerd.io
+      usermod -aG docker vagrant
+      sudo apt-get install -y sysdig
+      sudo snap install curl
+      curl -sL https://raw.githubusercontent.com/slimtoolkit/slim/master/scripts/install-slim.sh | sudo -E bash -
+      apt install -y sysdig
+      cd /home/vagrant/vagrant_data/confine
+    SHELL
+  end
+end
+

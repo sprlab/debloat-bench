@@ -1,0 +1,34 @@
+{
+    "applications": {
+      "nginx": {
+        "arg1": "nginx:latest",
+        "arg2": "new-nginx:curl",
+        "arg3": "docker run -it --entrypoint='' --name some-nginx1 -d -p 8080:80 new-nginx:curl sh",
+        "arg4": "nginx"
+      },
+      "httpd": {
+        "arg1": "httpd:bullseye",
+        "arg2": "new-httpd:curl",
+        "arg3": "docker run -it -d --name some-httpd1 new-httpd:curl sh",
+        "arg4": "httpd"
+      },
+      "python": {
+        "arg1": "python:3.9.16",
+        "arg2": "new-python:curl",
+        "arg3": "docker run -it -d --name some-python1 new-python:curl sh",
+        "arg4": "python"
+      },
+      "mysql": {
+        "arg1": "mysql:latest",
+        "arg2": "new-mysql:curl",
+        "arg3": "docker run -d -p 3306:3306 --name some-mysql1 -e MYSQL_ROOT_PASSWORD=pas new-mysql:curl",
+        "arg4": "mysql"
+      },
+      "node": {
+        "arg1": "node:latest",
+        "arg2": "new-node:curl",
+        "arg3": "docker run -it --entrypoint='' --name some-node1 -d new-node:curl sh",
+        "arg4": "node"
+      }
+    }
+}

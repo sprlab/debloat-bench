@@ -1,0 +1,10 @@
+{
+    "httpd": {
+        "enable": "true",
+        "image-name": "httpd",
+        "image-url": "httpd:bullseye",
+        "dependencies": {}
+    },
+    
+    "cmd": "docker run --name some-httpd1 -dit --security-opt seccomp=results/httpd.seccomp.json httpd:bullseye"
+}
