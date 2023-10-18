@@ -1,0 +1,35 @@
+{
+    "applications": {
+      "nginx": {
+        "arg1": "docker run --security-opt seccomp:./log.json -it --entrypoint='' --name some-nginx -d -p 8080:80 nginx:latest sleep infinity",
+        "arg2": "docker stop some-nginx",
+        "arg3": "sudo ./speakeru -service nginx -cmd 'docker run -it --entrypoint=\"\" --name some-nginx1 -d -p 8080:80 nginx:latest sleep infinity'",
+        "arg4": "nginx"
+      },
+      "httpd": {
+        "arg1": "docker run --security-opt seccomp:./log.json -it -d --name some-httpd httpd:bullseye",
+        "arg2": "docker stop some-httpd",
+        "arg3": "sudo ./speakeru -service httpd -cmd 'docker run -it -d --name some-httpd1 httpd:bullseye'",
+        "arg4": "httpd"
+      },
+      "python": {
+        "arg1": "docker run --security-opt seccomp:./log.json -it -d --name some-python python:3.9.16 sh",
+        "arg2": "docker stop some-python",
+        "arg3": "sudo ./speakeru -service python -cmd 'docker run -it -d --name some-python1 python:3.9.16 sh'",
+        "arg4": "python"
+      },
+      "mysql": {
+        "arg1": "docker run --security-opt seccomp:./log.json -d -p 3306:3306 --name some-mysql -e MYSQL_ROOT_PASSWORD=pas mysql",
+        "arg2": "docker stop some-mysql",
+        "arg3": "sudo ./speakeru -service mysqld -cmd 'docker run -d -p 3306:3306 --name some-mysql1 -e MYSQL_ROOT_PASSWORD=pas mysql'",
+        "arg4": "mysql"
+      },
+      "node": {
+        "arg1": "docker run --security-opt seccomp:./log.json -it --entrypoint='' --name some-node -d node sh",
+        "arg2": "docker stop some-node",
+        "arg3": "sudo ./speakeru -service node -cmd 'docker run -it --entrypoint=\"\" --name some-node1 -d node sh'",
+        "arg4": "node"
+      }
+    }
+  }
+  

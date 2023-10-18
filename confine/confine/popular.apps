@@ -1,0 +1,10 @@
+nginx
+mongo
+redis
+postgres
+mysql
+memcached
+httpd
+node
+registry
+mariadb
