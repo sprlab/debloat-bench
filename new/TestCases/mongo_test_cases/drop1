@@ -1,0 +1,13 @@
+switched to db drop
+{ "ok" : 1 }
+admin   0.000GB
+config  0.000GB
+drop    0.000GB
+local   0.000GB
+new     0.000GB
+{ "ok" : 1 }
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+new     0.000GB
+bye
