@@ -31,10 +31,10 @@ container="some-python1"
 
 echo "<============ Testing Python ============>"
 
-docker cp hello.py $container:/hello.py
-docker cp test1.py $container:/test1.py
-docker cp test_save.py $container:/test_save.py
-docker cp test_u.py $container:/test_u.py
+docker cp /home/vagrant/vagrant_data/TestCases/python_test_cases/hello.py $container:/hello.py
+docker cp /home/vagrant/vagrant_data/TestCases/python_test_cases/test1.py $container:/test1.py
+docker cp /home/vagrant/vagrant_data/TestCases/python_test_cases/test_save.py $container:/test_save.py
+docker cp /home/vagrant/vagrant_data/TestCases/python_test_cases/test_u.py $container:/test_u.py
 
 
 
@@ -107,4 +107,4 @@ fi
 
 echo ""
 
-echo "Total passed" $passed / $totalscore
+echo $passed

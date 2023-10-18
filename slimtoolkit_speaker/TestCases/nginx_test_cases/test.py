@@ -12,6 +12,7 @@ from tempfile import TemporaryDirectory
 #container_id = input("Enter container_id:")
 def nginx_funct():
     container_id = "some-nginx1"
+    #container_id = "container-hardened"
     passed = 0
     total = 7
     # print("CONTAINER_ID: ",container_id)
@@ -64,7 +65,7 @@ def nginx_funct():
         print("FAILED")
 
     print("adding wrong conf file in container")
-    os.system("docker cp wrong_nginx.conf "+container_id+ ":/etc/nginx/wrong_nginx.conf")
+    os.system("docker cp /home/vagrant/vagrant_data/TestCases/nginx_test_cases/wrong_nginx.conf "+container_id+ ":/etc/nginx/wrong_nginx.conf")
 
     print("TESTING -c flag with wrong config file")
     required = 'nginx: configuration file /etc/nginx/wrong_nginx.conf test failed\n'
@@ -106,3 +107,9 @@ def nginx_funct():
     
     return passed
     #print("-------", passed, "--------")
+
+def main():
+    result = nginx_funct()
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,10 @@
+{
+    "applications": {
+        "node": {
+        "arg1": "node:19-bullseye",
+        "arg2": "new-node:curl",
+        "arg3": "docker run -dit --entrypoint='' --name some-node1 new-node:curl sh",
+        "arg4": "node"
+      }
+    }
+}

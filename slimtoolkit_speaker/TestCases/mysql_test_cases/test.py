@@ -1,10 +1,10 @@
 # pull image using docker pull mysql:debian
-# create container using docker run -p 13306:3306 --name mysqltest -eMYSQL_ROOT_PASSWORD=pas -d mysql:debian
+# create container using docker run -p 13306:3306 --name some-mysql1 -eMYSQL_ROOT_PASSWORD=pas -d mysql:debian
 # Make sure that this command is not giving any error:   mysql -uroot -ppas -h127.0.0.1 -P13306 -e 'show global variables like "max_connections"';  most probably it will return 151 connections as output
 # debloat the image/container.
 # Start the container before running this test file.
 # open terminal in the same directory i.e. mysql_testing directory
-# run the file using:   python3 test.py 
+# run the file using:   python3 test.py
 
 
 import os
@@ -157,3 +157,10 @@ def mysql_funct():
         print("FAILED")
     print("TESTS PASSED: ",passed,"/",total)
     return passed
+
+
+def main():
+    result = mysql_funct()
+
+if __name__ == "__main__":
+    main()

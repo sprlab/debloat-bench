@@ -24,14 +24,14 @@ bash httpd_test_cases.sh
 comment
 
 
-totalscore=8
+totalscore=12
 passed=0
 
 container="some-httpd1"
 
 echo "<============ Testing HTTPD ============>"
 
-docker exec -it $container httpd -v /bin/bash >/dev/null
+docker exec -it $container httpd -v >/dev/null
 if [ $? -eq 0 ] 
     then
         echo "===> Test flag v passed"
@@ -42,7 +42,7 @@ fi
 
 
 docker exec -it $container httpd -h >/dev/null
-if [ $? -eq 1 ] 
+if [ $? -eq 0 ] 
     then
         echo "===> Test flag h passed"
         let passed=passed+1
@@ -105,7 +105,42 @@ if [ $? -eq 0 ]
         echo "===> Test flag l failed"
 fi
 
+docker exec -it $container httpd -M >/dev/null
+if [ $? -eq 0 ] 
+    then
+        echo "===> Test flag M passed"
+        let passed=passed+1
+    else
+        echo "===> Test flag M failed"
+fi
+
+docker exec -it $container httpd -S >/dev/null
+if [ $? -eq 0 ] 
+    then
+        echo "===> Test flag S passed"
+        let passed=passed+1
+    else
+        echo "===> Test flag S failed"
+fi
+
+docker exec -it $container httpd -v >/dev/null
+if [ $? -eq 0 ]
+    then
+        echo "===> Test flag v passed"
+        let passed=passed+1
+    else
+        echo "===> Test flag v failed"
+fi
+
+docker exec -it $container httpd -E /usr/local/apache2/conf/httpd.conf >/dev/null
+if [ $? -eq 0 ]
+    then
+        echo "===> Test flag E passed"
+        let passed=passed+1
+    else
+        echo "===> Test flag E failed"
+fi
 
 echo ""
 
-echo "Total passed" $passed / $totalscore
+echo  $passed

@@ -11,6 +11,12 @@
       },
       "mysql": {
         "tag": "latest"
+      },
+      "node": {
+        "tag": "19-bullseye"
+      },
+      "redis": {
+        "tag": "latest"
       }
     }
   }

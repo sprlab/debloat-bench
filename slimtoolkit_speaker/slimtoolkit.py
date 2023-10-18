@@ -11,6 +11,9 @@ import json
 from TestCases.nginx_test_cases.test import nginx_funct
 from TestCases.node_test_cases.test import node_funct
 from TestCases.mysql_test_cases.test import mysql_funct
+from TestCases.python_test_cases.test import python_funct
+from TestCases.httpd_test_cases.test import httpd_funct
+
 
 def merge_files(input_files, output_file):
     with open(output_file, 'w') as outfile:
@@ -61,11 +64,11 @@ def run_slimtoolkit(target,tag,command,application):
 	result = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	print(result.stdout.decode('utf-8'))
 
-	if "python" in application or "httpd" in application:
-		result = subprocess.run(['bash', 'test.sh'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		print(result.stdout.decode('utf-8'))
-		last =int(result.stdout.decode('utf-8')[-6:][0])
-	elif 'mysql' in application:
+	#if "python" in application or "httpd" in application:
+	#	result = subprocess.run(['bash', 'test.sh'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	#	print(result.stdout.decode('utf-8'))
+	#	last =int(result.stdout.decode('utf-8')[-6:][0])
+	if 'mysql' in application:
 		result = application + '_funct()'
 		last  = eval(result)
 		print("***last:***",last)
