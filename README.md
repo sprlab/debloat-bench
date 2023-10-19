@@ -13,7 +13,7 @@ sudo apt-get install -y virtualbox
 
 ## Running Tools
 
-**Steps for running Confine** <br>
+**Running Confine:** <br>
 
 ```cd confine``` <br>
 
@@ -29,7 +29,7 @@ vagrant ssh
 **Now you can run the becnhmark on confine using the run.py file.** <br>
 This will debloat the container images and run the test cases and generate the relevant files.
 
-**Steps for running Slimtoolkit and/or Speaker** <br>
+**Running Slimtoolkit and/or Speaker:** <br>
 ```cd slimtoolkit_speaker``` <br>
 
 **Start the Virtual machine using and connect to it using:** <br>
