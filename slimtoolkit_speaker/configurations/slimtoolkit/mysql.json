@@ -1,0 +1,10 @@
+{
+    "applications": {
+        "mysql": {
+            "arg1": "mysql:latest",
+            "arg2": "new-mysql:curl",
+            "arg3": "docker run -d -p 3306:3306 --name some-mysql1 -e MYSQL_ROOT_PASSWORD=pas new-mysql:curl",
+            "arg4": "mysql"
+          }
+    }
+}

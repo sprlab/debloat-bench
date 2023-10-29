@@ -1,0 +1,5 @@
+.vagrant
+.vagrant/*
+__pycache__/
+/.vagrant/
+/vagrant/

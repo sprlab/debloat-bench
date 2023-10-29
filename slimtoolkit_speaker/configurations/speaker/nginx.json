@@ -1,0 +1,10 @@
+{
+    "applications": {
+      "nginx": {
+        "arg1": "docker run --security-opt seccomp:./log.json -it --entrypoint='' --name some-nginx -d -p 8080:80 nginx:latest sleep infinity",
+        "arg2": "docker stop some-nginx",
+        "arg3": "sudo ./speakeru -service nginx -cmd 'docker run -it --entrypoint=\"\" --name some-nginx1 -d -p 8080:80 nginx:latest sleep infinity'",
+        "arg4": "nginx"
+      }
+    }
+}

@@ -1,0 +1,1 @@
+CompletedProcess(args=['docker', 'rm', '-f', 'some-mongo1'], returncode=0, stdout=b'', stderr=b'Error response from daemon: No such container: some-mongo1\n')

@@ -1,0 +1,7 @@
+MongoDB shell version v5.0.21
+connecting to: mongodb://127.0.0.1:27018/?compressors=disabled&gssapiServiceName=mongodb
+Error: couldn't connect to server 127.0.0.1:27018, connection attempt failed: SocketException: Error connecting to 127.0.0.1:27018 :: caused by :: Connection refused :
+connect@src/mongo/shell/mongo.js:372:17
+@(connect):2:6
+exception: connect failed
+exiting with code 1

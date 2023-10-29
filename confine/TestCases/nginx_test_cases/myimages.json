@@ -1,0 +1,7 @@
+{
+    "redis": {
+        "enable": "true",
+        "image-name": "redis",
+        "image-url": "redis:7-bullseye"
+    }
+}

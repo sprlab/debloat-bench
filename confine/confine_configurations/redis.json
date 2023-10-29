@@ -1,0 +1,8 @@
+{
+    "redis": {
+        "enable": "true",
+        "image-name": "redis",
+        "image-url": "redis:7-bullseye"
+    },
+    "cmd": "docker run --name some-redis1 -dit --security-opt seccomp=results/redis.seccomp.json redis:7-bullseye"
+}
