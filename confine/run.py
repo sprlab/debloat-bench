@@ -30,12 +30,6 @@ if os.path.exists(configurations_directory) and os.path.isdir(configurations_dir
     
     # Print the list of application names
     print(apps)
-    
-    # Print the list of JSON file paths
-    for json_file in json_files:
-        print(json_file)
-
-
 
 folder_name = "confine"
 
@@ -129,17 +123,15 @@ else:
 
 
 if os.path.exists(folder_path):
+    results_directory = os.path.abspath(os.path.join(os.path.dirname(current_directory), "results/"))
+    if not os.path.exists(results_directory):
+        os.mkdir(results_directory)
 
     for i in range(len(json_files)):
         try:
 
-            # Copy confine_test_{app}.txt and confine_{app}.txt to the results directory
-            results_directory = os.path.abspath(os.path.join(os.path.dirname(current_directory), "results"))
-
-            # Copy confine_test_{app}.txt
             copy(os.path.join(current_directory, "confine_test_" + apps[i] + ".txt"), results_directory)
 
-            # Copy confine_{app}.txt
             copy(os.path.join(current_directory, "confine_" + apps[i] + ".txt"), results_directory)
 
             print("Files copied to the results directory.")

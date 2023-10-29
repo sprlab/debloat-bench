@@ -12,6 +12,7 @@ confine/.vagrant/*
 # Ignore Vagrant files and directories
 /.vagrant/
 /vagrant/
+results/
 
 
 
