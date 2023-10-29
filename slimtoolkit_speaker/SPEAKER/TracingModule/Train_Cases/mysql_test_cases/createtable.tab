@@ -1,5 +1,0 @@
-Field	Type	Null	Key	Default	Extra
-title	varchar(50)	NO	PRI	NULL	
-genre	varchar(30)	NO		NULL	
-director	varchar(60)	NO		NULL	
-release_year	int	NO		NULL	

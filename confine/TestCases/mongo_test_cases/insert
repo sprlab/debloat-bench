@@ -1,9 +1,0 @@
-use new;
-db.talha.insert({Name: "talha", Marks: 100});
-db.talha.insert({Name: "talhatahir", Marks: 80});
-db.talha.insert({Name: "talhatahir :)", Marks: 90});
-db.talha1.insert({Name: "talha1", Marks: 85});
-db.talha.find({}, {_id:0});
-db.talha1.find({}, {_id:0});
-db.talha2.find({}, {_id:0});
-db.talha10.find({}, {_id:0});

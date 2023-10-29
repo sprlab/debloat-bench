@@ -1,7 +1,0 @@
-use new;
-db.createCollection('talha');
-db.createCollection('talha1');
-db.createCollection('talha2');
-db.createCollection('talha3');
-show collections;
-show dbs;
