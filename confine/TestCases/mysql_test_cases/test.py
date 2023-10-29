@@ -32,7 +32,7 @@ def mysql_funct():
 
 
     print("Testing show databases")
-    some_command = "mysql -h 127.0.0.1 -P 3306 -u root -ppas mysql < showdb.sql > showdb.tab"
+    some_command = "mysql -h 127.0.0.1 -P 3306 -uroot -ppas mysql < showdb.sql > showdb.tab"
     p = subprocess.Popen(some_command, stdout=subprocess.PIPE, shell=True)
     (output, err) = p.communicate()
     p_status = p.wait()
@@ -44,7 +44,7 @@ def mysql_funct():
 
 
     print("Testing create databases")
-    some_command = "mysql -h 127.0.0.1 -P 3306 -u root -ppas mysql < createdb.sql > createdb.tab"
+    some_command = "mysql -h 127.0.0.1 -P 3306 -uroot -ppas mysql < createdb.sql > createdb.tab"
     p = subprocess.Popen(some_command, stdout=subprocess.PIPE, shell=True)
     (output, err) = p.communicate()
     p_status = p.wait()

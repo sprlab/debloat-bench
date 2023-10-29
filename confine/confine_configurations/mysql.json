@@ -1,0 +1,9 @@
+{
+    "mysql" : {
+        "enable": "true",
+        "image-name": "mysql",
+        "image-url": "mysql:debian",
+        "options": "-e MYSQL_ROOT_PASSWORD=pas"
+    },
+    "cmd": "docker run -p 3306:3306 --name some-mysql1 -eMYSQL_ROOT_PASSWORD=pas --security-opt seccomp=results/mysql.seccomp.json -d mysql:debian"
+}

@@ -1,0 +1,1 @@
+CompletedProcess(args=['docker', 'rm', '-f', 'some-node1'], returncode=0, stdout=b'some-node1\n', stderr=b'')

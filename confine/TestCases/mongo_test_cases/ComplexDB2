@@ -1,0 +1,24 @@
+switched to db new
+WriteResult({ "nInserted" : 1 })
+{ "name" : "name1", "birthday" : ISODate("1950-11-01T00:00:00Z") }
+{ "name" : "name2", "birthday" : ISODate("1964-02-09T00:00:00Z") }
+{ "name" : "name3", "birthday" : ISODate("1970-05-18T00:00:00Z") }
+{ "name" : "name4", "birthday" : ISODate("1961-03-05T00:00:00Z") }
+{ "name" : "name5", "birthday" : ISODate("1984-06-18T00:00:00Z") }
+{ "name" : "name6", "birthday" : ISODate("1981-04-18T00:00:00Z") }
+{ "name" : "name7", "birthday" : ISODate("1978-02-15T00:00:00Z") }
+{ "name" : "name8", "birthday" : ISODate("1994-06-15T00:00:00Z") }
+{ "name" : "name9", "birthday" : ISODate("1964-09-05T00:00:00Z") }
+{ "name" : "name10", "birthday" : ISODate("1970-06-28T00:00:00Z") }
+{ "name" : "name11", "birthday" : ISODate("1976-09-05T00:00:00Z") }
+{ "name" : "name12", "birthday" : ISODate("1993-04-05T00:00:00Z") }
+{ "name" : "name13", "birthday" : ISODate("1978-12-13T00:00:00Z") }
+{ "name" : "name14", "birthday" : ISODate("1974-06-01T00:00:00Z") }
+{ "name" : "name15", "birthday" : ISODate("1967-02-07T00:00:00Z") }
+{ "name" : "name16", "birthday" : ISODate("1991-12-06T00:00:00Z") }
+{ "name" : "name17", "birthday" : ISODate("1993-08-24T00:00:00Z") }
+{ "name" : "name18", "birthday" : ISODate("1976-10-19T00:00:00Z") }
+{ "name" : "name19", "birthday" : ISODate("1961-03-04T00:00:00Z") }
+{ "name" : "name20", "birthday" : ISODate("1989-08-16T00:00:00Z") }
+Type "it" for more
+bye

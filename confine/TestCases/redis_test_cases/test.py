@@ -1,7 +1,7 @@
 import subprocess
 
 def redis_funct():
-    script_path = "/home/vagrant/vagrant_data/TestCases/redis_test_cases/redis_test_cases.sh"
+    script_path = "redis_test_cases.sh"
     try:
         result = subprocess.check_output(["bash", script_path])
         output_lines = result.decode().strip().split('\n')

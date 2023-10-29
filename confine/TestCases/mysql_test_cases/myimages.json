@@ -1,0 +1,8 @@
+{
+    "nginx": {
+        "enable": "true",
+        "image-name": "nginx",
+        "image-url": "nginx:1.23.4",
+        "dependencies": {}
+    }
+}

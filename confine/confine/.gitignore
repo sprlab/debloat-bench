@@ -1,5 +1,8 @@
 *.tar.gz
 *.json
+*.txt
+# dont ignore default.seccomp.json
+!default.seccomp.json
 myimages.json
 opendaylight.images.list
 output

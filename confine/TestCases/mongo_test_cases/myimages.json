@@ -1,0 +1,8 @@
+{
+    "mysql": {
+        "enable": "true",
+        "image-name": "mysql",
+        "image-url": "mysql:debian",
+        "options": "-e MYSQL_ROOT_PASSWORD=pas"
+    }
+}

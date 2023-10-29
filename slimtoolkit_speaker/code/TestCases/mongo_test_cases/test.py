@@ -1,5 +1,3 @@
-print("Helo")
-
 import os
 import subprocess
 import filecmp

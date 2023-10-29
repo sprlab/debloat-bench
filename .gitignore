@@ -1,0 +1,24 @@
+.DS_Store
+**/.vagrant/
+/.vagrant
+.vagrant/
+confine/.vagrant/
+confine/.vagrant
+slimtoolkit_speaker/.vagrant/
+slimtoolkit_speaker/.vagrant
+
+# ignore all files in .vagrant inside confine direcotry
+confine/.vagrant/*
+# Ignore Vagrant files and directories
+/.vagrant/
+/vagrant/
+
+
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+confine/.vagrant/machines/*

@@ -1,0 +1,9 @@
+{
+    "mongo": {
+        "enable": "true",
+        "image-name": "mongo",
+        "image-url": "mongo:6.0.9-jammy",
+        "options": "-e MONGO_INITDB_ROOT_USERNAME=rootUser -e MONGO_INITDB_ROOT_PASSWORD=talha",
+        "dependencies": {}
+    }
+}
