@@ -1,0 +1,10 @@
+{
+    "applications": {
+        "python": {
+            "arg1": "docker run --security-opt seccomp:./log.json -it -d --name some-python python:3.9.16 sh",
+            "arg2": "docker stop some-python",
+            "arg3": "sudo ./speakeru -service python -cmd 'docker run -it -d --name some-python1 python:3.9.16 sh'",
+            "arg4": "python"
+          }
+    }
+}

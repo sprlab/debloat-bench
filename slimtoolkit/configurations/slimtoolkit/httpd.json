@@ -1,0 +1,10 @@
+{
+    "applications": {
+        "httpd": {
+            "arg1": "httpd:bullseye",
+            "arg2": "new-httpd:curl",
+            "arg3": "docker run -it -d --name some-httpd1 new-httpd:curl sh",
+            "arg4": "httpd"
+          }
+    }
+}

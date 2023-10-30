@@ -1,2 +1,0 @@
-use new;
-db.talha3.find({ $or: [{ name: "name1" }, { name: "name30" }]}, {birthday:0,_id:0});

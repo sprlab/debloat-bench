@@ -82,7 +82,7 @@ if os.path.exists(folder_path):
             print("Error: Generating container from new seccomp profile unsuccessful")
 
         try:
-            os.chdir(os.path.join("/home/vagrant/vagrant_data", "TestCases", apps[i]+"_test_cases"))
+            os.chdir(os.path.join("/home/vagrant/vagrant_data/confine", "TestCases", apps[i]+"_test_cases"))
             print("\n \n \n \n \n")
             print(f"*****RUNNING TEST CASES FOR {apps[i].upper()}*****")
             result = eval(apps[i] + '_funct()')
@@ -100,7 +100,7 @@ if os.path.exists(folder_path):
                 seccomp_data = json.load(seccomp_file)
                 syscall_names = [syscall["name"] for syscall in seccomp_data.get("syscalls", [])]
 
-            with open(os.path.join(current_directory, "confine_"+apps[i]+".txt"), "w") as syscall_file:
+            with open(os.path.join(current_directory, "confine_allowed_"+apps[i]+".txt"), "w") as syscall_file:
                 syscall_file.write("\n".join(syscall_names))
 
             print("Syscall names in the seccomp profile:", syscall_names)

@@ -1,2 +1,0 @@
-use new;
-db.dropDatabase();

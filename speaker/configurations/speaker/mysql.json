@@ -1,0 +1,10 @@
+{
+    "applications": {
+        "mysql": {
+            "arg1": "docker run --security-opt seccomp:./log.json -d -p 3306:3306 --name some-mysql -e MYSQL_ROOT_PASSWORD=pas mysql",
+            "arg2": "docker stop some-mysql",
+            "arg3": "sudo ./speakeru -service mysqld -cmd 'docker run -d -p 3306:3306 --name some-mysql1 -e MYSQL_ROOT_PASSWORD=pas mysql'",
+            "arg4": "mysql"
+          }
+    }
+}

@@ -1,0 +1,5 @@
+use drop;
+db.createCollection('talha');
+show dbs;
+db.dropDatabase();
+show dbs;

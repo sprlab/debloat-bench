@@ -1,8 +1,0 @@
-.vagrant
-# pycache
-*.pyc
-.vagrant/
-__pycache__/
-/.vagrant/
-/vagrant/
-

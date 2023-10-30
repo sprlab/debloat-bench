@@ -1,0 +1,22 @@
+{
+    "applications": {
+      "nginx": {
+        "tag": "latest"
+      },
+      "httpd": {
+        "tag": "bullseye"
+      },
+      "python": {
+        "tag": "3.9.16"
+      },
+      "mysql": {
+        "tag": "latest"
+      },
+      "node": {
+        "tag": "19-bullseye"
+      },
+      "redis": {
+        "tag": "latest"
+      }
+    }
+  }
